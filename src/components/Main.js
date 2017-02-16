@@ -1,19 +1,30 @@
 import React from 'react';
 import Header from './Header';
-import Loader from './Loader';
-import Results from './Results';
-import Beer from './Beer';
-import Single from './Single';
+
 
 class Main extends React.Component {
+  // constructor will run when component is made
+  constructor () {
+    super();
+    this.state = {
+      numBeers: 0
+    }
+  }
+  // creates property called incrementBeers and sets it to an automatic function
+  incrementBeers = () => {
+    // we have to take a copy of state first
+    const beerAmount = this.state.numBeers + 1;
+    // when you see setState, it really means update state
+    this.setState({
+      numBeers: beerAmount
+    });
+  }
+
   render() {
     return (
       <div className="wrapper">
         <Header siteName="Beer Me!" />
-        <Loader message="This is the message prop" />
-        <Results />
-        <Beer />
-        <Single />
+        <button onClick={this.incrementBeers}>{this.state.numBeers}</button>
       </div>
     )
   }
